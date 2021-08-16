@@ -92,16 +92,7 @@
                                                                         <span class="error invalid-feedback">{{ $message }}</span>
                                                                     @enderror
                                                                 </td>
-                                                                <th width="150px" >Date <span>*</span></th>
-                                                                    <td width="150px" >
-                                                                    <input type="date" class="form-control col-6 @error('date') is-invalid @enderror" id="date" name="date" value="{{ $editdesignCard ? old('date',$editdesignCard->date) : old('date') }}" placeholder="">
-                                                                    @error('date')
-                                                                        <span class="error invalid-feedback">{{ $message }}</span>
-                                                                    @enderror
-                                                                </td>
-                                                            </tr>
-
-                                                            <tr>
+                                                               
                                                                 <th width="150px">Label <span>*</span></th>
                                                                 <td width="300px">
                                                                     <input type="text" class="form-control col-6 @error('label') is-invalid @enderror" id="label" name="label" value="{{ $editdesignCard ? old('label',$editdesignCard->label) : old('label') }}" placeholder="label">
@@ -109,15 +100,20 @@
                                                                         <span class="error invalid-feedback">{{ $message }}</span>
                                                                     @enderror
                                                                 </td>
-                                                                <td colspan="2"></td>
+                                                              
+                                                                <th width="150px" >Date <span>*</span></th>
+                                                                <td width="150px" >
+                                                                    <input type="date" class="form-control col-9 @error('date') is-invalid @enderror" id="date" name="date" value="{{ $editdesignCard ? old('date',$editdesignCard->date) : old('date') }}" placeholder="">
+                                                                    @error('date')
+                                                                        <span class="error invalid-feedback">{{ $message }}</span>
+                                                                    @enderror
+                                                                </td>
                                                             </tr>
-                                                        </table>
-                                                        <!-- design details  -->
-                                                        <table width="100%">
+
                                                             <tr>
                                                                 <th width="150px">Designer <span>*</span></th>
                                                                 <td>
-                                                                    <select class="form-control col-5 @error('designer_id') is-invalid @enderror" id="designer" name="designer_id">
+                                                                    <select class="form-control col-9 @error('designer_id') is-invalid @enderror" id="designer" name="designer_id">
                                                                         <option value="">Please Select Designer</option>
                                                                         @foreach( $data['designerMaster'] as $designer) 
                                                                             @if($editdesignCard)
@@ -131,15 +127,7 @@
                                                                         <span class="error invalid-feedback">{{ $message }}</span>
                                                                     @enderror
                                                                 </td>
-                                                                <th>Design No <span>*</span></th>
-                                                                <td>
-                                                                    <input type="text" class="form-control col-6 @error('design_number') is-invalid @enderror" id="design_no" name="design_number" value="{{ $editdesignCard ? old('design_number',$editdesignCard->design_number) : old('design_number') }}" placeholder="DH546">
-                                                                    @error('design_number')
-                                                                        <span class="error invalid-feedback">{{ $message }}</span>
-                                                                    @enderror
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
+
                                                                 <th width="150px">Sales Rep <span>*</span></th>
                                                                 <td>
                                                                     <select class="form-control col-5 @error('salesrep_id') is-invalid @enderror" id="sales_rep" name="salesrep_id">
@@ -155,200 +143,175 @@
                                                                     @error('salesrep_id')
                                                                         <span class="error invalid-feedback">{{ $message }}</span>
                                                                     @enderror
-                                                                </td>
-                                                                <th width="150px">Quality <span>*</span></th>
+                                                                </td> 
+                                                                
+                                                                  <th width="150px">Weaver <span>*</span></th>
                                                                 <td>
-                                                                    <select class="form-control col-6 @error('category') is-invalid @enderror" name="category">
-                                                                        <option value="">Please Select Quality</option>
-                                                                        @foreach( $data['wovenQuality'] as $quality) 
-                                                                            @if($editdesignCard)
-                                                                                <option value="{{$quality['id']}}" {{ old('category') == $quality['id'] ? 'selected' : ($quality['id'] == $editdesignCard->category ? 'selected' : '') }}>{{ucfirst($quality['name'])}} </option>
-                                                                                @else
-                                                                                <option value="{{$quality['id']}}" {{ old('category') == $quality['id'] ? 'selected' : '' }}>{{ucfirst($quality['name'])}} </option>
-                                                                            @endif
-                                                                        @endforeach
-                                                                    </select>
-                                                                    @error('category')
-                                                                        <span class="error invalid-feedback">{{ $message }}</span>
-                                                                    @enderror
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th width="150px">Weaver <span>*</span></th>
-                                                                <td>
-                                                                    <select class="form-control col-5 @error('weaver_id') is-invalid @enderror" id="sample_weaver" name="weaver[]" multiple>
-                                                                        <option value="">Please Weaver</option>
-                                                                        @foreach( $data['designerMaster'] as $designer) 
-                                                                            @if($editdesignCard)
-                                                                                <option value="{{$designer['id']}}" {{ in_array($designer['id'], $editdesignCard->weaver_id) ? 'selected' : '' }}>{{$designer['name']}} </option>
-                                                                                @else
-                                                                                <option value="{{$designer['id']}}">{{$designer['name']}} </option>
-                                                                            @endif
-                                                                        @endforeach
-                                                                    </select>
-                                                                    @error('weaver')
-                                                                        <span class="error invalid-feedback">{{ $message }}</span>
-                                                                    @enderror
-                                                                </td>
-                                                                <th width="150px">Warp <span>*</span></th>
-                                                                <td>
-                                                                    <select class="form-control col-6 @error('warp') is-invalid @enderror" id="warp" name="warps_id">
-                                                                        <option value="">Please Select Warp</option>
-                                                                        @foreach( $data['warpMaster'] as $warp) 
-                                                                            @if($editdesignCard)
-                                                                                <option value="{{$warp['id']}}" {{ old('warps_id') == $warp['id'] ? 'selected' : ($warp['id'] == $editdesignCard->warps_id ? 'selected' : '') }}>{{ucfirst($warp['name'])}} </option>
-                                                                            @else
-                                                                                <option value="{{$designer['id']}}" {{ old('warps_id') == $warp['id'] ? 'selected' : '' }}>{{$designer['name']}} </option>
-                                                                            @endif
-                                                                            
-                                                                        @endforeach
-                                                                    </select>
-                                                                    @error('warps_id')
-                                                                        <span class="error invalid-feedback">{{ $message }}</span>
-                                                                    @enderror
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th width="150px">Picks/cm <span>*</span></th>
-                                                                <td>
-                                                                    <div class="d-flex"> 
-                                                                        <input type="text" class="form-control col-5 @error('pick') is-invalid @enderror" id="pick" name="picks" value="{{ $editdesignCard ? old('picks',$editdesignCard->picks) : old('picks') }}" placeholder="Pick"> <span>/cm</span>
-                                                                        @error('picks')
+                                                                    <div class="form-group row">
+
+                                                                        <select class="form-control col-5 @error('weaver_id') is-invalid @enderror" id="sample_weaver" name="weaver[]">
+                                                                            <option value="">Please Weaver</option>
+                                                                            @foreach( $data['designerMaster'] as $designer) 
+                                                                                @if($editdesignCard)
+                                                                                    <option value="{{$designer['id']}}" {{ in_array($designer['id'], $editdesignCard->weaver_id) ? 'selected' : '' }}>{{$designer['name']}} </option>
+                                                                                    @else
+                                                                                    <option value="{{$designer['id']}}">{{$designer['name']}} </option>
+                                                                                @endif
+                                                                            @endforeach
+                                                                        </select>
+                                                                        @error('weaver')
+                                                                            <span class="error invalid-feedback">{{ $message }}</span>
+                                                                        @enderror
+
+                                                                        <select class="form-control col-5 @error('weaver_id') is-invalid @enderror" id="sample_weaver" name="weaver[]">
+                                                                            <option value="">Please Weaver</option>
+                                                                            @foreach( $data['designerMaster'] as $designer) 
+                                                                                @if($editdesignCard)
+                                                                                    <option value="{{$designer['id']}}" {{ in_array($designer['id'], $editdesignCard->weaver_id) ? 'selected' : '' }}>{{$designer['name']}} </option>
+                                                                                    @else
+                                                                                    <option value="{{$designer['id']}}">{{$designer['name']}} </option>
+                                                                                @endif
+                                                                            @endforeach
+                                                                        </select>
+                                                                        @error('weaver')
+                                                                            <span class="error invalid-feedback">{{ $message }}</span>
+                                                                        @enderror
+                                                                        <select class="form-control col-5 @error('weaver_id') is-invalid @enderror" id="sample_weaver" name="weaver[]">
+                                                                            <option value="">Please Weaver</option>
+                                                                            @foreach( $data['designerMaster'] as $designer) 
+                                                                                @if($editdesignCard)
+                                                                                    <option value="{{$designer['id']}}" {{ in_array($designer['id'], $editdesignCard->weaver_id) ? 'selected' : '' }}>{{$designer['name']}} </option>
+                                                                                    @else
+                                                                                    <option value="{{$designer['id']}}">{{$designer['name']}} </option>
+                                                                                @endif
+                                                                            @endforeach
+                                                                        </select>
+                                                                        @error('weaver')
                                                                             <span class="error invalid-feedback">{{ $message }}</span>
                                                                         @enderror
                                                                     </div>
                                                                 </td>
-                                                                <th width="150px">Total Pick <span>*</span></th>
-                                                                <td>
-                                                                    <input type="text" name="total_picks" class="form-control col-6 @error('total_picks') is-invalid @enderror" value="{{ $editdesignCard ? old('total_picks',$editdesignCard->total_picks) : old('total_picks') }}" placeholder="Enter the value"> 
-                                                                    @error('total_picks')
-                                                                        <span class="error invalid-feedback">{{ $message }}</span>
-                                                                    @enderror
-                                                                </td>
+                                                               
+                                                              
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Warp</th>
+                                                                <td><input type="text" class="form-control"></td>
+                                                                <th>Finishing</th>
+                                                                <td><input type="text" class="form-control"></td>
+                                                                <th>Note</th>
+                                                                <td><textarea name="" id="" cols="30" rows="3" class="form-control"></textarea></td>
+                                                            </tr>
+                                                        </table>
+                                                        <!-- design details  -->
+                                                        <table width="100%">
+                                                          
+                                                            <tr>
+                                                                                                                            
+                                                            </tr>
+                                                            <tr>
+                                                              
                                                             </tr>
                                                         </table>
                                                         <!-- design details  -->
                                                         <table width="100%">
                                                             <tr>
-                                                                <th>Looms</th>
-                                                                @foreach($data['loomMaster'] as $looms)
-                                                                    <th>{{ucfirst($looms['loom_name'])}}</th>
-                                                                    <input type="hidden" value="{{$looms['loom_name']}}" name="looms[]">
-                                                                @endforeach
+                                                                <!-- <th>Label Name</th> -->
+                                                                <th width="150px"></th>
+                                                                <th>Main Label</th>
+                                                                <th>Tab Label</th>
+                                                                <th>Size Label</th>
                                                             </tr>
+
                                                             <tr>
-                                                                <th>Total Repeats</th>
-                                                                <td>
-                                                                    @if($editdesignCard)
-                                                                        @foreach($editdesignCard->total_repet as $total_repet)
-                                                                            <input type="text" class="form-control col-7" name="total_repet[]" value="{{ $total_repet }}" placeholder="Enter the value">
-                                                                        @endforeach
-                                                                    @else
-                                                                        <input type="text" class="form-control col-7" name="total_repet[]" value="" placeholder="Enter the value">
-                                                                    @endif
-                                                                </td>
+                                                                <th>Design No</th>
+                                                                <td><input type="text" class="form-control col-6"></td>
+                                                                <td><input type="text" class="form-control col-6"></td>
+                                                                <td><input type="text" class="form-control col-6"></td>
                                                             </tr>
-                                                        </table>
-                                                        <table width="100%">
+
                                                             <tr>
-                                                                <th width="150px">Wastage <span>*</span></th>
+                                                                <th>Quality</th>
+                                                                <td><input type="text" class="form-control col-6"></td>
+                                                                <td><input type="text" class="form-control col-6"></td>
+                                                                <td><input type="text" class="form-control col-6"></td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <th>Picks/Cm</th>
+                                                                <td><input type="text" class="form-control col-6"></td>
+                                                                <td><input type="text" class="form-control col-6"></td>
+                                                                <td><input type="text" class="form-control col-6"></td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <th>Total Picks</th>
+                                                                <td><input type="text" class="form-control col-6"></td>
+                                                                <td><input type="text" class="form-control col-6"></td>
+                                                                <td><input type="text" class="form-control col-6"></td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <th>Total Repeat</th>
+                                                                <td><input type="text" class="form-control col-6"></td>
+                                                                <td><input type="text" class="form-control col-6"></td>
+                                                                <td><input type="text" class="form-control col-6"></td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <th>Wastage</th>
                                                                 <td>
                                                                     <div class="form-check">
-                                                                        @if($editdesignCard)
-                                                                            <input class="form-check-input" type="radio" value="1" name="wastage" {{ old('wastage') === 1 ? 'checked' : ($editdesignCard->wastage === 1 ? 'checked' : '') }}>
-                                                                        @else
-                                                                            <input class="form-check-input" type="radio" value="1" name="wastage" {{ old('wastage') === 1 ? 'checked' : '' }}>
-                                                                        @endif
-                                                                        <label class="form-check-label">YES</label>
-                                                                        @if($editdesignCard)
-                                                                            <input class="form-check-input ml-3" type="radio" value="no" name="wastage" {{ old('wastage') == "no" ? 'checked' : ($editdesignCard->wastage == "no" ? 'checked' : '') }} style="margin-left:35px;">
-                                                                        @else
-                                                                            <input class="form-check-input ml-3" type="radio" value="0" name="wastage" checked>
-                                                                        @endif
+                                                                        <input class="form-check-input ml-3" type="radio" value="0" name="main_label">
+                                                                        <label class="form-check-label ml-5">Yes</label>
+                                                                        <input class="form-check-input ml-3" type="radio" value="0" name="main_label" checked>
                                                                         <label class="form-check-label ml-5">NO</label>
                                                                     </div>
-                                                                    @error('wastage')
-                                                                        <span class="error invalid-feedback">{{ $message }}</span>
-                                                                    @enderror
                                                                 </td>
-                                                                <th width="150px">Finishings <span>*</span></th>
                                                                 <td>
-                                                                    <select class="form-control col-6 @error('finishing_id') is-invalid @enderror" name="finishing_id">
-                                                                        <option value="">Please Select Warp</option>
-                                                                        @foreach( $data['finishingMaster'] as $finishing) 
-                                                                            @if($editdesignCard)
-                                                                                <option value="{{$finishing['id']}}" {{ old('finishing_id') == $finishing['id'] ? 'selected' : ($finishing['id'] == $editdesignCard->finishing_id ? 'selected' : '') }}>{{ucfirst($finishing['machine'])}} </option>
-                                                                            @else
-                                                                                <option value="{{$finishing['id']}}" {{ old('finishing_id') == $finishing['id'] ? 'selected' : '' }}>{{ucfirst($finishing['machine'])}} </option>
-                                                                            @endif
-                                                                        @endforeach
-                                                                    </select>
-                                                                    @error('finishing_id')
-                                                                        <span class="error invalid-feedback">{{ $message }}</span>
-                                                                    @enderror
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th width="150px">Width mm <span>*</span></th>
-                                                                <td>
-                                                                    <div>
-                                                                        <input type="text" class="form-control col-6 @error('width') is-invalid @enderror" name="width" value="{{ $editdesignCard ? old('width',$editdesignCard->width) : old('width') }}" placeholder="Enter the value">
-                                                                        @error('width')
-                                                                            <span class="error invalid-feedback">{{ $message }}</span>
-                                                                        @enderror
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input ml-3" type="radio" value="0" name="tab_lable">
+                                                                        <label class="form-check-label ml-5">Yes</label>
+                                                                        <input class="form-check-input ml-3" type="radio" value="0" name="tab_lable" checked>
+                                                                        <label class="form-check-label ml-5">NO</label>
                                                                     </div>
                                                                 </td>
                                                                 <td>
-                                                                    <strong>Length mm</strong>
-                                                                </td>
-                                                                <td>
-                                                                    <div>
-                                                                        <input type="text" class="form-control col-6 @error('length') is-invalid @enderror" name="length" value="{{ $editdesignCard ? old('length',$editdesignCard->length) : old('length') }}" placeholder="Enter the value">
-                                                                        @error('length')
-                                                                            <span class="error invalid-feedback">{{ $message }}</span>
-                                                                        @enderror 
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input ml-3" type="radio" value="0" name="size_label">
+                                                                        <label class="form-check-label ml-5">Yes</label>
+                                                                        <input class="form-check-input ml-3" type="radio" value="0" name="size_label" checked>
+                                                                        <label class="form-check-label ml-5">NO</label>
                                                                     </div>
                                                                 </td>
                                                             </tr>
+
                                                             <tr>
-                                                                <th width="150px">Total Area /Sq mm<span>*</span></th>
-                                                                <td>
-                                                                    <div>
-                                                                        <input type="text" class="form-control col-6 @error('total_cost') is-invalid @enderror" name="total_cost" value="{{ $editdesignCard ? old('total_cost',$editdesignCard->total_cost) : old('total_cost') }}" placeholder="Enter the value">
-                                                                        @error('total_cost')
-                                                                            <span class="error invalid-feedback">{{ $message }}</span>
-                                                                        @enderror 
-                                                                    </div>
-                                                                </td>
-                                                                <th width="150px">cost in roll<span>*</span></th>
-                                                                <td>
-                                                                    <div>
-                                                                        <input type="text" class="form-control col-6 @error('cost_in_roll') is-invalid @enderror" name="cost_in_roll" value="{{ $editdesignCard ? old('cost_in_roll',$editdesignCard->cost_in_roll) : old('cost_in_roll') }}" placeholder="Enter the value">
-                                                                        @error('cost_in_roll')
-                                                                            <span class="error invalid-feedback">{{ $message }}</span>
-                                                                        @enderror 
-                                                                    </div>
-                                                                </td>
+                                                                <th>Width</th>
+                                                                <td><input type="text" class="form-control col-6"></td>
+                                                                <td><input type="text" class="form-control col-6"></td>
+                                                                <td><input type="text" class="form-control col-6"></td>
                                                             </tr>
+
                                                             <tr>
-                                                                <th width="150px">Sq Inch<span>*</span></th>
-                                                                <td>
-                                                                    <div>
-                                                                        <input type="text" class="form-control col-6 @error('sq_inch') is-invalid @enderror" name="sq_inch" value="{{ $editdesignCard ? old('sq_inch',$editdesignCard->sq_inch) : old('sq_inch') }}" placeholder="Enter the value">
-                                                                        @error('sq_inch')
-                                                                            <span class="error invalid-feedback">{{ $message }}</span>
-                                                                        @enderror 
-                                                                    </div>
-                                                                </td>
-                                                                <th width="150px">Cost /sq inch<span>*</span></th>
-                                                                <td>
-                                                                    <div>
-                                                                        <input type="text" class="form-control col-6 @error('cost_sq_inch') is-invalid @enderror" value="{{ $editdesignCard ? old('cost_sq_inch',$editdesignCard->cost_sq_inch) : old('cost_sq_inch') }}" placeholder="Enter the value">
-                                                                        @error('cost_sq_inch')
-                                                                            <span class="error invalid-feedback">{{ $message }}</span>
-                                                                        @enderror 
-                                                                    </div>
-                                                                </td>
+                                                                <th>Length</th>
+                                                                <td><input type="text" class="form-control col-6"></td>
+                                                                <td><input type="text" class="form-control col-6"></td>
+                                                                <td><input type="text" class="form-control col-6"></td>
+                                                            </tr>
+                                                          
+                                                            <tr>
+                                                                <th>Sq mm</th>
+                                                                <td><input type="text" class="form-control col-6"></td>
+                                                                <td><input type="text" class="form-control col-6"></td>
+                                                                <td><input type="text" class="form-control col-6"></td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <th>Sq inch</th>
+                                                                <td><input type="text" class="form-control col-6"></td>
+                                                                <td><input type="text" class="form-control col-6"></td>
+                                                                <td><input type="text" class="form-control col-6"></td>
                                                             </tr>
                                                         </table>
                                                     </td>
@@ -397,7 +360,51 @@
                                                                 <th>TOTAL</th>
                                                             </tr>
                                                             <tr id="table_row">
-                                                                <th style="width:300px;">Cost</th>
+                                                                <th style="width:150px;">Main</th>
+                                                                @if($editdesignCard)
+                                                                    <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="{{ isset($editdesignCard->add_on_cast['0']) ?  $editdesignCard->add_on_cast['0'] : '' }}" placeholder="Enter the basic value"></td>
+                                                                    <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="{{ isset($editdesignCard->add_on_cast['1']) ?  $editdesignCard->add_on_cast['1'] : '' }}" placeholder="Enter the cut fold value"></td>
+                                                                    <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="{{ isset($editdesignCard->add_on_cast['2']) ?  $editdesignCard->add_on_cast['2'] : '' }}" placeholder="Enter the deicut value"></td>
+                                                                    <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="{{ isset($editdesignCard->add_on_cast['3']) ?  $editdesignCard->add_on_cast['3'] : '' }}" placeholder="Enter the nonwoven value"></td>
+                                                                    <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="{{ isset($editdesignCard->add_on_cast['4']) ?  $editdesignCard->add_on_cast['4'] : '' }}" placeholder="Enter the iron on back value"></td>
+                                                                    <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="{{ isset($editdesignCard->add_on_cast['5']) ?  $editdesignCard->add_on_cast['5'] : '' }}" placeholder="Enter the extras value"></td>
+                                                                    <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="{{ isset($editdesignCard->add_on_cast['6']) ?  $editdesignCard->add_on_cast['6'] : '' }}" placeholder="Enter the offered value"></td>
+                                                                    <td><input type="text" class="form-control" id="total_value" readonly name="add_on_cast[]" value="{{ isset($editdesignCard->add_on_cast['7']) ?  $editdesignCard->add_on_cast['7'] : '' }}" placeholder="Enter the total value"></td>
+                                                                @else
+                                                                    <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="" placeholder="Enter basic value"></td>
+                                                                    <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="" placeholder="Enter cut fold value"></td>
+                                                                    <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="" placeholder="Enter deicut value"></td>
+                                                                    <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="" placeholder="Enter nonwoven value"></td>
+                                                                    <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="" placeholder="Enter iron on back value"></td>
+                                                                    <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="" placeholder="Enter extras value"></td>
+                                                                    <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="" placeholder="Enter offered value"></td>
+                                                                    <td><input type="text" class="form-control" id="total_value" name="add_on_cast[]" readonly value="" placeholder="Enter total value"></td>
+                                                                @endif
+                                                            </tr>
+                                                            <tr id="table_row">
+                                                                <th style="width:150px;">Tab</th>
+                                                                @if($editdesignCard)
+                                                                    <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="{{ isset($editdesignCard->add_on_cast['0']) ?  $editdesignCard->add_on_cast['0'] : '' }}" placeholder="Enter the basic value"></td>
+                                                                    <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="{{ isset($editdesignCard->add_on_cast['1']) ?  $editdesignCard->add_on_cast['1'] : '' }}" placeholder="Enter the cut fold value"></td>
+                                                                    <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="{{ isset($editdesignCard->add_on_cast['2']) ?  $editdesignCard->add_on_cast['2'] : '' }}" placeholder="Enter the deicut value"></td>
+                                                                    <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="{{ isset($editdesignCard->add_on_cast['3']) ?  $editdesignCard->add_on_cast['3'] : '' }}" placeholder="Enter the nonwoven value"></td>
+                                                                    <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="{{ isset($editdesignCard->add_on_cast['4']) ?  $editdesignCard->add_on_cast['4'] : '' }}" placeholder="Enter the iron on back value"></td>
+                                                                    <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="{{ isset($editdesignCard->add_on_cast['5']) ?  $editdesignCard->add_on_cast['5'] : '' }}" placeholder="Enter the extras value"></td>
+                                                                    <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="{{ isset($editdesignCard->add_on_cast['6']) ?  $editdesignCard->add_on_cast['6'] : '' }}" placeholder="Enter the offered value"></td>
+                                                                    <td><input type="text" class="form-control" id="total_value" readonly name="add_on_cast[]" value="{{ isset($editdesignCard->add_on_cast['7']) ?  $editdesignCard->add_on_cast['7'] : '' }}" placeholder="Enter the total value"></td>
+                                                                @else
+                                                                    <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="" placeholder="Enter basic value"></td>
+                                                                    <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="" placeholder="Enter cut fold value"></td>
+                                                                    <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="" placeholder="Enter deicut value"></td>
+                                                                    <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="" placeholder="Enter nonwoven value"></td>
+                                                                    <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="" placeholder="Enter iron on back value"></td>
+                                                                    <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="" placeholder="Enter extras value"></td>
+                                                                    <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="" placeholder="Enter offered value"></td>
+                                                                    <td><input type="text" class="form-control" id="total_value" name="add_on_cast[]" readonly value="" placeholder="Enter total value"></td>
+                                                                @endif
+                                                            </tr>
+                                                            <tr id="table_row">
+                                                                <th style="width:150px;">Size</th>
                                                                 @if($editdesignCard)
                                                                     <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="{{ isset($editdesignCard->add_on_cast['0']) ?  $editdesignCard->add_on_cast['0'] : '' }}" placeholder="Enter the basic value"></td>
                                                                     <td><input type="text" class="form-control txtCal" name="add_on_cast[]" value="{{ isset($editdesignCard->add_on_cast['1']) ?  $editdesignCard->add_on_cast['1'] : '' }}" placeholder="Enter the cut fold value"></td>
@@ -425,6 +432,7 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th>Needle No/Pantone</th>
+                                                                    <th>Coulmn</th>
                                                                     <th>Color</th>
                                                                     <th>Color Shade</th>
                                                                     <th>Denier</th>
@@ -441,6 +449,7 @@
                                                                     @forelse($editdesignCard->needle as $needle)
                                                                         <tr id="inputFormRow">
                                                                             <td><input type="text" style="border-radius:.25rem; padding:.375rem .75rem; color: #495057; background-color: #fff;  border: 1px solid #ced4da;" class="form-controls" name="needle[needle_no_pantone]" value="{{ $needle['needle_no_pantone'] }}" placeholder="Enter the value"></td>
+                                                                            <td><input type="text" style="border-radius:.25rem; padding:.375rem .75rem; color: #495057; background-color: #fff;  border: 1px solid #ced4da;" class="form-controls" name="needle[needle_no_pantone]" value="{{ $needle['needle_no_pantone'] }}" placeholder="Enter the value"></td>
                                                                             <td><input type="color" style="border-radius:.25rem; color: #495057; background-color: #fff;  border: 1px solid #ced4da;" class="form-controls" name="needle[color]" value="{{ $needle['color'] }}" placeholder="Enter the value"></td>
                                                                             <td><input type="color" style="border-radius:.25rem; color: #495057; background-color: #fff;  border: 1px solid #ced4da;" class="form-controls" name="needle[color_shade]" value="{{ $needle['color_shade'] }}"></td>
                                                                             <td><input type="text" style="border-radius:.25rem; padding:.375rem .75rem; color: #495057; background-color: #fff;  border: 1px solid #ced4da;" class="form-controls" name="needle[denier]"  value="{{ $needle['denier'] }}" placeholder="Enter the value"></td>
@@ -453,6 +462,7 @@
                                                                         </tr>
                                                                     @empty
                                                                         <tr id="inputFormRow">
+                                                                            <td><input type="text" style="border-radius:.25rem; padding:.375rem .75rem; color: #495057; background-color: #fff;  border: 1px solid #ced4da;" class="form-controls" name="needle[needle_no_pantone]" value="{{ $needle['needle_no_pantone'] }}" placeholder="Enter the value"></td>
                                                                             <td><input type="text" style="border-radius:.25rem; padding:.375rem .75rem; color: #495057; background-color: #fff;  border: 1px solid #ced4da;" class="form-controls" name="needle[needle_no_pantone]" value="{{ $needle['needle_no_pantone'] }}" placeholder="Enter the value"></td>
                                                                             <td><input type="color" style="border-radius:.25rem; color: #495057; background-color: #fff;  border: 1px solid #ced4da;" class="form-controls" name="needle[color]" value="{{ $needle['color'] }}" placeholder="Enter the value"></td>
                                                                             <td><input type="color" style="border-radius:.25rem; color: #495057; background-color: #fff;  border: 1px solid #ced4da;" class="form-controls" name="needle[color_shade]" value="{{ $needle['color_shade'] }}"></td>
@@ -467,6 +477,7 @@
                                                                     @endforelse
                                                                 @else
                                                                     <tr id="inputFormRow">
+                                                                        <td><input type="text" style="border-radius:.25rem; padding:.375rem .75rem; color: #495057; background-color: #fff;  border: 1px solid #ced4da;" class="form-controls" name="needle[needle_no_pantone]" value="" placeholder="Enter the value"></td>
                                                                         <td><input type="text" style="border-radius:.25rem; padding:.375rem .75rem; color: #495057; background-color: #fff;  border: 1px solid #ced4da;" class="form-controls" name="needle[needle_no_pantone]" value="" placeholder="Enter the value"></td>
                                                                         <td><input type="color" style="border-radius:.25rem; color: #495057; background-color: #fff;  border: 1px solid #ced4da;" class="form-controls" name="needle[color]" value="" placeholder="Enter the value"></td>
                                                                         <td><input type="color" style="border-radius:.25rem; color: #495057; background-color: #fff;  border: 1px solid #ced4da;" class="form-controls" name="needle[color_shade]" value=""></td>
