@@ -23,61 +23,37 @@ class WovenRequest extends FormRequest
      */
     public function rules()
     {
-        $validation = [
-            "date" => "required",
-            "customer_id" => "required",
-            "lable" => "required",
-            "designer_id" => "required",
-            "design_number" => "required",
-            "salesrep_id" => "required",
-            "weaver_id" => "required",
-            "warps_id" => "required",
-            "picks" => "required",
-            "total_picks" => "required",
-            "loom_id.*" => "required",
-            "total_repet.*" => "required",
-            "wastage" => "required",
-            "finishing_id" => "required",
-            "cost_in_roll" => "required",
-            "total_cost" => "required",
-            "catagory" => "required",
-            "length" => "required",
-            "sq_inch" => "required",
-            "customer_grade" => "required",
-            "width" => "required",
-            "add_on_cast.*" => "required",
-            "needle.*" => "required",
-            
+        $otherValidation = [];
+        $validation      = [
+            'date'                  => "required",
+            'customer_id'           => "required",
+            'label'                 => "required",
+            'designer_id'           => "required",
+            'design_number'         => "required",
+            'salesrep_id'           => "required",
+            'weaver_id'             => "required",
+            'warps_id'              => "required",
+            'picks'                 => "required",
+            'total_picks'           => "required",
+            'wastage'               => "required",
+            'finishing_id'          => "required",
+            'cost_in_roll'          => "required",
+            'total_cost'            => "required",
+            'customer_grade'        => "required",
+            'category'              => "required",
+            'length'                => "required",
+            'width'                 => "required",
+            'sq_inch'               => "required",
+            'cost_sq_inch'          => "required",
         ];
-
-        if ($this->isMethod("put")) {
-            $validation = [
-                "date" => "required",
-                "customer_id" => "required",
-                "lable" => "required",
-                "designer_id" => "required",
-                "design_number" => "required",
-                "salesrep_id" => "required",
-                "weaver_id" => "required",
-                "warps_id" => "required",
-                "picks" => "required",
-                "total_picks" => "required",
-                "loom_id.*" => "required",
-                "total_repet.*" => "required",
-                "wastage" => "required",
-                "finishing_id" => "required",
-                "cost_in_roll" => "required",
-                "total_cost" => "required",
-                "catagory" => "required",
-                "length" => "required",
-                "sq_inch" => "required",
-                "customer_grade" => "required",
-                "width" => "required",
-                "add_on_cast.*" => "required",
-                "needle.*" => "required",
+        
+        if ($this->isMethod("post")) {
+            $otherValidation = [
+                'design_image'      => "required",
+                'design_file'       => "required",
             ];
         }
-
-        return $validation;
+      
+        return array_merge($validation, $otherValidation);
     }
 }
